@@ -1,1 +1,0 @@
-c:\users\james_000\documents\visual studio 2013\Projects\ProjetoWindowsPhone\ExGame\ExGame.csproj;neutral
