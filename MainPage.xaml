@@ -13,5 +13,8 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    <StackPanel>
+        <TextBlock FontSize="40">Perfil</TextBlock>
+    </StackPanel>
     
 </phone:PhoneApplicationPage>
