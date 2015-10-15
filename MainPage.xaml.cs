@@ -21,6 +21,9 @@ namespace ExGame
         
         }
 
-       
+        private void btCadastrarPerfil_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Teste");
+        }
     }
 }
