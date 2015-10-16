@@ -16,11 +16,16 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized">
             <shell:ApplicationBarIconButton 
-                IconUri="/Assets/Icons/add.png" 
+                IconUri="/Assets/Icons/perfil.png" 
                 Text="Perfil" Click="ApplicationBarIconButton_Perfil_Click"/>
+            
             <shell:ApplicationBarIconButton 
-                IconUri="/Assets/Icons/favs.png" 
+                IconUri="/Assets/Icons/jogos.png" 
                 Text="Meus Jogos" Click="ApplicationBarIconButton_Jogos_Click"/>
+
+            <shell:ApplicationBarIconButton 
+                IconUri="/Assets/Icons/config.png" 
+                Text="Configurações" Click="ApplicationBarIconButton_Configuracoes_Click"/>
 
             <!--
             <shell:ApplicationBar.MenuItems>
@@ -37,10 +42,16 @@
 
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock>Jogo1</TextBlock>
-                    <TextBlock>Jogo2</TextBlock>
-                    <TextBlock>Jogo3</TextBlock>
-                    <TextBlock>Jogo4</TextBlock>
+                    <ListBox Name="lbJogos">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10">
+                                    <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Descricao}" />
+                                    <TextBlock Foreground="Yellow" Text="{Binding Console}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </ScrollViewer>
         </phone:PanoramaItem>
