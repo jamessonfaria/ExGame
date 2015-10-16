@@ -64,17 +64,22 @@ namespace ExGame
 
         private void BaixarJogos()
         {
-            progress.IsVisible = true;
-            progress.IsIndeterminate = true;
-            progress.Text = "Baixando Jogos...";
+            //verificar se jogos já foram baixados
+            if (true)
+            {
+                progress.IsVisible = true;
+                progress.IsIndeterminate = true;
+                progress.Text = "Baixando Jogos...";
 
-            SystemTray.SetProgressIndicator(this, progress);
+                SystemTray.SetProgressIndicator(this, progress);
 
-            string url = "https://srvwebservice.herokuapp.com/api/v1/jogos";
+                string url = "https://srvwebservice.herokuapp.com/api/v1/jogos";
 
-            WebClient client = new WebClient();
-            client.OpenReadCompleted += Client_OpenReadCompleted;
-            client.OpenReadAsync(new Uri(url, UriKind.Absolute));
+                WebClient client = new WebClient();
+                client.OpenReadCompleted += Client_OpenReadCompleted;
+                client.OpenReadAsync(new Uri(url, UriKind.Absolute));
+            }
+            
 
         }
 
@@ -88,5 +93,15 @@ namespace ExGame
 
         }
 
+        private void Button_Trocar_Click(object sender, RoutedEventArgs e)
+        {
+            //Não entendi se aqui detalhamos o jogo para exibir os usuários que o tem para em seguida tocar.
+            Jogo selecionado = (Jogo)((Button)sender).DataContext;
+
+            Uri destino = new Uri("/JogoPage.xaml?jogo="+selecionado, UriKind.Relative);
+            NavigationService.Navigate(destino);
+        }
+
+        
     }
 }
