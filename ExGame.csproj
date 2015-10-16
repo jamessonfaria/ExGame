@@ -98,6 +98,9 @@
       <DependentUpon>ConfiguracoesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Jogo.cs" />
+    <Compile Include="JogoPage.xaml.cs">
+      <DependentUpon>JogoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="ConfiguracoesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JogoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
