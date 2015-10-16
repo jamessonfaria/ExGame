@@ -17,13 +17,35 @@ namespace ExGame
         public MainPage()
         {
             InitializeComponent();
-
-        
         }
 
-        private void btCadastrarPerfil_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MessageBox.Show("Teste");
+            base.OnNavigatedTo(e);
+            //Verificar se é o primeiro acesso do usuário através de consulta ao PhoneSettings
+            if (false)
+            {
+                Configurar_Perfil();
+            }
         }
+
+
+        private void ApplicationBarIconButton_Perfil_Click(object sender, EventArgs e)
+        {
+            Uri destino = new Uri("/PerfilPage.xaml", UriKind.Relative);
+            NavigationService.Navigate(destino);
+        }
+
+        private void ApplicationBarIconButton_Jogos_Click(object sender, EventArgs e)
+        {
+            Uri destino = new Uri("/PerfilJogosPage.xaml", UriKind.Relative);
+            NavigationService.Navigate(destino);
+        }
+
+        private void Configurar_Perfil() {
+            Uri destino = new Uri("/PerfilPage.xaml", UriKind.Relative);
+            NavigationService.Navigate(destino);
+        }
+
     }
 }
