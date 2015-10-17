@@ -30,7 +30,7 @@ namespace ExGame
         {
             base.OnNavigatedTo(e);
             //Verificar se é o primeiro acesso do usuário através de consulta ao PhoneSettings
-            if (false)
+            if (!PerfilHelper.PerfilCriado())
             {
                 ConfigurarPerfil();
             }
@@ -51,7 +51,7 @@ namespace ExGame
 
         private void ApplicationBarIconButton_Configuracoes_Click(object sender, EventArgs e)
         {
-            Uri destino = new Uri("/ConfiguacoesPage.xaml", UriKind.Relative);
+            Uri destino = new Uri("/ConfiguracoesPage.xaml", UriKind.Relative);
             NavigationService.Navigate(destino);
         }
 

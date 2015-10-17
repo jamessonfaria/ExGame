@@ -55,7 +55,7 @@
                                 <StackPanel Grid.Column="1" Grid.Row="0">
                                     <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Descricao}"/>
                                     <TextBlock Foreground="White" Text="{Binding Console}"/>
-                                    <Button Click="Button_Trocar_Click" Height="50" FontSize="12" Margin="0" Padding="0">Trocar</Button>
+                                    <Button Click="Button_Trocar_Click" Height="50" FontSize="12" Margin="0" Padding="0" Width="120" HorizontalAlignment="Left">Trocar</Button>
                                 </StackPanel>
                                 
                             </Grid>
