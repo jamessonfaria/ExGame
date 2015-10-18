@@ -97,8 +97,11 @@
     <Compile Include="ConfiguracoesPage.xaml.cs">
       <DependentUpon>ConfiguracoesPage.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="database\DBDataContext.cs" />
+=======
     <Compile Include="HttpHelper.cs" />
+>>>>>>> refs/remotes/origin/master
     <Compile Include="Jogo.cs" />
     <Compile Include="JogoPage.xaml.cs">
       <DependentUpon>JogoPage.xaml</DependentUpon>
