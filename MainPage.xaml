@@ -38,7 +38,7 @@
     
     <phone:Panorama Title="ExGame" Name="Pan">
 
-        <phone:PanoramaItem Header="XBOX">
+        <phone:PanoramaItem Header="Jogos">
             <ListBox Name="lbJogos">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -55,7 +55,7 @@
                                 <StackPanel Grid.Column="1" Grid.Row="0">
                                     <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Descricao}"/>
                                     <TextBlock Foreground="White" Text="{Binding Console}"/>
-                                    <Button Click="Button_Trocar_Click" Height="50" FontSize="12" Margin="0" Padding="0" Width="120" HorizontalAlignment="Left">Trocar</Button>
+                                    <Button Click="Button_Detalhe_Click" Height="50" FontSize="12" Margin="0" Padding="0" Width="120" HorizontalAlignment="Left">Detalhe</Button>
                                 </StackPanel>
                                 
                             </Grid>
@@ -66,7 +66,7 @@
 
         </phone:PanoramaItem>
 
-        <phone:PanoramaItem Header="PS4">
+        <phone:PanoramaItem Header="Trocas">
             <!--
             <ListBox Name="listAluno">
 
@@ -74,7 +74,7 @@
             -->
         </phone:PanoramaItem>
 
-        <phone:PanoramaItem Header="OUTRO">
+        <phone:PanoramaItem Header="Avaliações">
 
             <!-- 
             <ListBox Name="listAlunoPersonalizado">

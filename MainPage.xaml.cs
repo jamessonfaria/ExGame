@@ -93,7 +93,7 @@ namespace ExGame
 
         }
 
-        private void Button_Trocar_Click(object sender, RoutedEventArgs e)
+        private void Button_Detalhe_Click(object sender, RoutedEventArgs e)
         {
             //Não entendi se aqui detalhamos o jogo para exibir os usuários que o tem para em seguida tocar.
             Jogo selecionado = (Jogo)((Button)sender).DataContext;

@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
-  <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{0f86d19b-048c-4747-b698-f63da8eaee7c}" Title="ExGame" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="ExGame author" Description="Sample description" SDOptOut ="false" BackUpOptOut ="false" Publisher="ExGame" PublisherID="{5d4e7b37-8a39-4c63-b8ec-654ce61cbfd0}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <DefaultLanguage xmlns="" code="en-US" />
+  <App xmlns="" ProductID="{0f86d19b-048c-4747-b698-f63da8eaee7c}" Title="ExGame" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="ExGame author" Description="Sample description" SDOptOut="false" BackUpOptOut="false" Publisher="ExGame" PublisherID="{5d4e7b37-8a39-4c63-b8ec-654ce61cbfd0}">
+    <IconPath IsRelative="true" IsResource="false">icone.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING"/>
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO"/>
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK"/>
-      <Capability Name="ID_CAP_SENSORS"/>
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
+      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
+      <Capability Name="ID_CAP_SENSORS" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name ="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume"/>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="ExGameToken" TaskName="_default">
@@ -21,18 +20,23 @@
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
           <Title>ExGame</Title>
-          <BackContent></BackContent>
-          <BackBackgroundImageURI></BackBackgroundImageURI>
-          <BackTitle></BackTitle>
-          <DeviceLockImageURI></DeviceLockImageURI>
-          <HasLarge></HasLarge>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>
+          </HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
-      <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
-      <ScreenResolution Name="ID_RESOLUTION_WXGA"/>
-      <ScreenResolution Name="ID_RESOLUTION_HD720P"/>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
     </ScreenResolutions>
   </App>
 </Deployment>
