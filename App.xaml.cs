@@ -7,11 +7,15 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ExGame.Resources;
+using ExGame.database;
 
 namespace ExGame
 {
     public partial class App : Application
     {
+        // para passar os objetos
+        public object ToPass { get; set; }
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -67,6 +71,15 @@ namespace ExGame
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+
+            using (var bd = new DBDataContext())
+            {
+                // caso o database nao exista ele é criado
+                if (!bd.DatabaseExists())
+                {
+                    bd.CreateDatabase();
+                }
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)

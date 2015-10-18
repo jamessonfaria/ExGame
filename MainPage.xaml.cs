@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using ExGame.Resources;
 using System.Xml.Linq;
 using System.Runtime.Serialization.Json;
+using ExGame.database;
 
 namespace ExGame
 {
@@ -65,7 +66,7 @@ namespace ExGame
         private void BaixarJogos()
         {
             //verificar se jogos já foram baixados
-            if (true)
+            if (ExisteJogos() == 0)
             {
                 progress.IsVisible = true;
                 progress.IsIndeterminate = true;
@@ -79,8 +80,25 @@ namespace ExGame
                 client.OpenReadCompleted += Client_OpenReadCompleted;
                 client.OpenReadAsync(new Uri(url, UriKind.Absolute));
             }
-            
+            else
+            {
+                // recupera lista de jogos do banco local
+                using (var bd = new DBDataContext())
+                {
+                    var res = (from jogos in bd.Jogos select jogos).ToList();
+                    lbJogos.ItemsSource = res;
+                }           
+            }    
+                                   
+        }
 
+        private int ExisteJogos()
+        {
+            using (var bd = new DBDataContext())
+            {
+                var res = (from jogo in bd.Jogos select jogo).Count();
+                return res;
+            }          
         }
 
         private void Client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
@@ -88,6 +106,17 @@ namespace ExGame
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Jogo>));
             List<Jogo> jogos = (List<Jogo>)serializer.ReadObject(e.Result);
+
+            using (var bd = new DBDataContext())
+            {
+                // inserir os jogos no database local
+                foreach (Jogo jogo in jogos){                    
+                    bd.Jogos.InsertOnSubmit(jogo);                    
+                }
+
+                bd.SubmitChanges();
+            }
+
             lbJogos.ItemsSource = jogos;
             progress.IsVisible = false;
 
@@ -95,10 +124,12 @@ namespace ExGame
 
         private void Button_Detalhe_Click(object sender, RoutedEventArgs e)
         {
-            //Não entendi se aqui detalhamos o jogo para exibir os usuários que o tem para em seguida tocar.
+            //pega o objeto selecionado.
             Jogo selecionado = (Jogo)((Button)sender).DataContext;
 
-            Uri destino = new Uri("/JogoPage.xaml?jogo="+selecionado, UriKind.Relative);
+            (Application.Current as App).ToPass = selecionado;
+
+            Uri destino = new Uri("/JogoPage.xaml", UriKind.Relative);
             NavigationService.Navigate(destino);
         }
 

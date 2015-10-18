@@ -13,9 +13,44 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <phone:Pivot>
-        <phone:PivotItem Header="Teste"></phone:PivotItem>
-        <phone:PivotItem Header="Teste2"></phone:PivotItem>
-    </phone:Pivot>
+    <StackPanel>
+        <phone:Pivot>
+            <phone:PivotItem Name="pv1" Header="">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Row="0">
+                        <Image Name="foto" Height="200" Width="200" Grid.Column="0"/>                      
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1">                       
+                        <TextBlock Name="jogoConsole"></TextBlock>
+                        <TextBlock Name="jogoObs">Jogo que relata a historia .......... xxxxxxxxxxxxx</TextBlock>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="1">
+                        <TextBlock FontSize="24">::: Usuários :::</TextBlock>
+                        <TextBlock>adasdaasd</TextBlock>
+                        <TextBlock>adasdaasd</TextBlock>
+
+                        <TextBlock>adasdaasd</TextBlock>
+                    </StackPanel>
+                    
+                </Grid> 
+            </phone:PivotItem>
+            
+        </phone:Pivot>
+
+       
+    </StackPanel>
+    
+    
 
 </phone:PhoneApplicationPage>
