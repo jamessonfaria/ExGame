@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,11 +21,12 @@ namespace ExGame
         public static void IniciarPerfilPhoneSettings()
         {
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            //no primeiro acesso criar as phonesettings vazias para que o usuário possa voltar pra tela inicial mesmo sem salvar seu perfil
+            //no primeiro acesso criar as phonesettings vazias para que o usuário 
+            //possa voltar pra tela inicial mesmo sem salvar seu perfil
 
             if (!PerfilCriado())
             {
-                settings[CHAVE_ID] = 0;
+                settings[CHAVE_ID] = "";
                 settings[CHAVE_EMAIL] = "";
                 settings[CHAVE_NOME] = "";
                 settings[CHAVE_SENHA] = "";
@@ -49,10 +51,10 @@ namespace ExGame
             settings[CHAVE_ID] = perfil.Id;
             settings[CHAVE_NOME] = perfil.Nome;
             settings[CHAVE_EMAIL] = perfil.Email;
-            settings[CHAVE_DATA] = perfil.DataNascimento;
+            settings[CHAVE_DATA] = perfil.DataNascimento != null ? perfil.DataNascimento : DateTime.Now;
             settings[CHAVE_SENHA] = perfil.Senha;
-            settings[CHAVE_CIDADE] = perfil.Cidade;
-            settings[CHAVE_ESTADO] = perfil.Estado;
+            //settings[CHAVE_CIDADE] = perfil.Cidade;
+            //settings[CHAVE_ESTADO] = perfil.Estado;
             settings.Save();
         }
 
@@ -62,15 +64,39 @@ namespace ExGame
 
             Perfil perfil = new Perfil();
 
-            perfil.Id = (int)settings[CHAVE_ID];
+            perfil.Id = settings[CHAVE_ID].ToString();
             perfil.Nome = settings[CHAVE_NOME].ToString();
             perfil.Email = settings[CHAVE_EMAIL].ToString();
             perfil.DataNascimento = (DateTime)settings[CHAVE_DATA];
-            perfil.Cidade = settings[CHAVE_CIDADE].ToString();
-            perfil.Estado = settings[CHAVE_ESTADO].ToString();
+            //perfil.Cidade = settings[CHAVE_CIDADE].ToString();
+            //perfil.Estado = settings[CHAVE_ESTADO].ToString();
             perfil.Senha = settings[CHAVE_SENHA].ToString();
 
             return perfil;
+        }
+
+        public static void SalvarPerfilServidor(Perfil perfil)
+        {
+            string metodo = perfil.Id == "" ? "POST" : "PUT";
+            string url = perfil.Id == "" ? HttpHelper.URL_PERFILS :HttpHelper.URL_PERFILS + "/" + perfil.Id;
+            string json = HttpHelper.serializar(perfil);
+
+            WebClient client = new WebClient();
+            client.Headers["Content-Type"] = "application/json";
+            client.UploadStringCompleted += Client_UploadStringCompleted;
+            client.UploadStringAsync(new Uri(url, UriKind.Absolute), metodo, json);
+
+        }
+
+        private static void Client_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
+        {
+            //o put está retornando vazio no momento
+            if (e.Result != null && e.Result != "")
+            {
+                Perfil perfil = HttpHelper.deserializar<Perfil>(e.Result.ToString());
+                PerfilHelper.SalvarPerfilPhoneSettings(perfil);
+            }
+
         }
     }
 }
