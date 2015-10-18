@@ -97,6 +97,7 @@
     <Compile Include="ConfiguracoesPage.xaml.cs">
       <DependentUpon>ConfiguracoesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="Jogo.cs" />
     <Compile Include="JogoPage.xaml.cs">
       <DependentUpon>JogoPage.xaml</DependentUpon>

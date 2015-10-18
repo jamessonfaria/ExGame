@@ -14,8 +14,6 @@ namespace ExGame
     public partial class PerfilPage : PhoneApplicationPage
 
     {
-        
-
 
         public PerfilPage()
         {
@@ -37,16 +35,15 @@ namespace ExGame
 
         private void SalvarPerfil()
         {
+            Perfil atual = PerfilHelper.RecuperarPerfilPhoneSettings();
             DateTime nascimento = (DateTime)dpNascimento.Value;
-            Perfil perfil = new Perfil();
-            perfil.Nome = tbNome.Text;
-            perfil.Email = tbEmail.Text;
-            perfil.DataNascimento = nascimento;
-            perfil.Senha = pbSenha.Password;
-            perfil.Cidade = tbCidade.Text;
-            perfil.Estado = tbEstado.Text;
-
-            SalvarPerfilServidor(perfil);
+            atual.Nome = tbNome.Text;
+            atual.Email = tbEmail.Text;
+            atual.DataNascimento = nascimento;
+            atual.Senha = pbSenha.Password;
+            atual.Cidade = tbCidade.Text;
+            atual.Estado = tbEstado.Text;
+            SalvarPerfilServidor(atual);
             
         }
 
@@ -57,35 +54,15 @@ namespace ExGame
             tbNome.Text = perfil.Nome;
             tbEmail.Text = perfil.Email;
             dpNascimento.Value = perfil.DataNascimento;
-            tbCidade.Text = perfil.Cidade;
-            tbEstado.Text = perfil.Estado;
+            //tbCidade.Text = perfil.Cidade;
+            //tbEstado.Text = perfil.Estado;
             pbSenha.Password = perfil.Senha;
 
         }
 
-        private bool SalvarPerfilServidor(Perfil perfil) {
-            Perfil atual = PerfilHelper.RecuperarPerfilPhoneSettings();
-            bool sucesso = true;
-            if(atual.Id == 0)
-            {
-                //POST
-                MessageBox.Show("Enviar POST para o servidor");
-                perfil.Id = 1000;
-            }
-            else
-            {
-                //PUT
-                perfil.Id = atual.Id;
-                MessageBox.Show("Enviar PUT para o servidor");
-
-            }
-
-            if (sucesso)
-            {
-                PerfilHelper.SalvarPerfilPhoneSettings(perfil);
-            }
+        private void SalvarPerfilServidor(Perfil perfil) {
+            PerfilHelper.SalvarPerfilServidor(perfil);
             
-            return sucesso;
         }
 
     }
