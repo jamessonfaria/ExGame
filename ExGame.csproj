@@ -98,6 +98,7 @@
       <DependentUpon>ConfiguracoesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="database\DBDataContext.cs" />
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="Jogo.cs" />
     <Compile Include="JogoPage.xaml.cs">
       <DependentUpon>JogoPage.xaml</DependentUpon>
