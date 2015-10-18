@@ -23,13 +23,15 @@ namespace ExGame
         public string Senha { get; set; }
 
         [DataMember(Name = "dt_nasc")]
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
 
         [DataMember(Name = "endereco")]
         public string Endereco { get; set; }
 
+        [DataMember(Name = "cidade")]
         public string Cidade { get; set; }
 
+        [DataMember(Name = "estado")]
         public string Estado { get; set; }
     }
 }
