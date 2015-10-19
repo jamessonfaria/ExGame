@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using System.Windows.Resources;
 using System.Windows.Media.Imaging;
+using System.Runtime.Serialization.Json;
 
 namespace ExGame
 {
@@ -18,9 +19,11 @@ namespace ExGame
         // objeto geral
         private Object obj;
         private static Jogo jogo;
+        ProgressIndicator progress;
 
         public JogoPage()
         {
+            progress = new ProgressIndicator();
             InitializeComponent();          
         }
 
@@ -29,29 +32,48 @@ namespace ExGame
             base.OnNavigatedTo(e);
 
             // recebe objeto
-            obj = (App.Current as App).ToPass;           
+            obj = (App.Current as App).ToPass;
             jogo = (Jogo)obj;
 
-            pv1.Header = jogo.Descricao;
-            
             // foto do jogo
-            ImageSource imgSource = new BitmapImage(new Uri(jogo.Foto.ToString(), UriKind.Absolute));            
+            ImageSource imgSource = new BitmapImage(new Uri(jogo.Foto.ToString(), UriKind.Absolute));
             foto.Source = imgSource;
 
             // descricao do console
-            jogoConsole.Text = "Console: " + jogo.Console;
+            jogoConsole.Text = jogo.Console;
+            // descricao do jogo
+            jogoDesc.Text = jogo.Descricao;
+
+            ListaUsuarios(jogo.Id.ToString());
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        protected void ListaUsuarios(String id)
         {
+            progress.IsVisible = true;
+            progress.IsIndeterminate = true;
+            progress.Text = "Atualizando Usuários...";
 
-            jogo = (Jogo)obj;
+            SystemTray.SetProgressIndicator(this, progress);
 
-            MessageBox.Show(jogo.Descricao + " - " + jogo.Id.ToString() + "-" + jogo.Console);
+            string url = "http://srvwebservice.herokuapp.com/api/v1/usuarios_por_jogo/" + id;
+
+            WebClient client = new WebClient();
+            client.OpenReadCompleted += Client_OpenReadCompleted;
+            client.OpenReadAsync(new Uri(url, UriKind.Absolute));         
+           
         }
 
+        private void Client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+            
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<JogoPerfil>));
+            List<JogoPerfil> jogoPerfils = (List<JogoPerfil>)serializer.ReadObject(e.Result);
 
+            lbUsuarios.ItemsSource = jogoPerfils;
+            progress.IsVisible = false;
+
+        }
        
     }
 
