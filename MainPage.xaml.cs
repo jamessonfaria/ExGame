@@ -21,31 +21,18 @@ namespace ExGame
 
         // Constructor
         public MainPage()
-        {
+        {           
             progress = new ProgressIndicator();
             InitializeComponent();
-            ModificaTile();
-            CriaTileSec();
+            ModificaTile();            
             BaixarJogos();
             
         }
 
-        protected void ModificaTile()
+        protected void CriaTile()
         {
-            // acessando o tile principal
-            ShellTile tilePrincipal = ShellTile.ActiveTiles.First();
 
-            // criando um tile data e passando os dados
-            StandardTileData data = new StandardTileData();
-            data.Count = ExisteJogos();
-            data.Title = "Troca de Jogos";
-
-            // atualiza o tile principal
-            tilePrincipal.Update(data);
-        }
-
-        protected void CriaTileSec()
-        {
+            // cria o tile secundario
             // verifica se o tile ja existe
             ShellTile tileFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("Acessar Perfil"));
 
@@ -64,8 +51,24 @@ namespace ExGame
             Uri uri = new Uri("/PerfilPage.xaml", UriKind.Relative);
 
             // cria o tile
-            ShellTile.Create(uri, data);       
+            ShellTile.Create(uri, data);   
         }
+
+        protected void ModificaTile()
+        {
+            // acessando o tile principal
+            ShellTile tilePrincipal = ShellTile.ActiveTiles.First();
+
+            // criando um tile data e passando os dados
+            StandardTileData data = new StandardTileData();
+            data.Count = ExisteJogos();
+            data.Title = "Troca de Jogos";
+
+            // atualiza o tile principal
+            tilePrincipal.Update(data);
+        }
+
+      
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

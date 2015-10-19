@@ -71,7 +71,7 @@ namespace ExGame
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-
+            // cria o database
             using (var bd = new DBDataContext())
             {
                 // caso o database nao exista ele é criado
@@ -80,6 +80,8 @@ namespace ExGame
                     bd.CreateDatabase();
                 }
             }
+        
+
         }
 
         // Code to execute when the application is activated (brought to foreground)

@@ -18,6 +18,7 @@ namespace ExGame
         public const string URL_JOGO_PERFILS   = "https://srvwebservice.herokuapp.com/api/v1/jogo_perfils";
         public const string URL_TROCA_JOGOS    = "https://srvwebservice.herokuapp.com/api/v1/trocajogos";
         public const string URL_PROPOSTA_JOGOS = "https://srvwebservice.herokuapp.com/api/v1/propostajogos";
+        public const string URL_JOGOS_USUARIO = "https://srvwebservice.herokuapp.com/api/v1/jogos_por_usuario";
 
         public static string serializar<T>(T obj)
         {
