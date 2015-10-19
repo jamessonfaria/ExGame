@@ -103,6 +103,8 @@
     <Compile Include="JogoPage.xaml.cs">
       <DependentUpon>JogoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JogoPerfil.cs" />
+    <Compile Include="JogoPerfilUsuario.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

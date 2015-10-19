@@ -15,6 +15,34 @@
 
     <StackPanel Orientation="Vertical" Margin="10">
         <TextBlock FontSize="40">Meus Jogos</TextBlock>
+        <!-- <TextBox Name="tbPesquisa" KeyDown="tbPesquisa_KeyDown"></TextBox> -->
+        <TextBlock Name="tbMensagem"></TextBlock>
+        <ScrollViewer>
+        <ListBox Name="lbJogos">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Foto}" Width="100" Height="100" Grid.Column="0" Grid.Row="0" />
+                            <StackPanel Grid.Column="1" Grid.Row="0">
+                                <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Descricao}"/>
+                                    <TextBlock Foreground="White" Text="{Binding Console}"/>
+                                    <CheckBox Checked="CheckBox_Checked"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        </ScrollViewer>
     </StackPanel>
 
 </phone:PhoneApplicationPage>
