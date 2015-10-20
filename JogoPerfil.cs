@@ -16,6 +16,9 @@ namespace ExGame
         [DataMember(Name = "perfil_id")]
         public int PerfilId { get; set; }
 
+        [DataMember(Name = "jogo_id")]
+        public int JogoId { get; set; }
+
         [DataMember(Name = "nome")]
         public String Nome { get; set; }
 
