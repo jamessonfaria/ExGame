@@ -15,6 +15,7 @@
     shell:SystemTray.IsVisible="True">
 
     <StackPanel Orientation="Vertical" Margin="10">
+        
         <TextBlock FontSize="40">Perfil</TextBlock>
 
         <TextBlock Text="Nome"></TextBlock>
@@ -23,8 +24,9 @@
         <TextBlock Text="E-mail"></TextBlock>
         <TextBox Name="tbEmail"></TextBox>
 
+        <!--
         <TextBlock Text="Data de Nascimento"></TextBlock>
-        <tk:DatePicker Name="dpNascimento" />
+        <tk:DatePicker Name="dpNascimento" /> -->
 
         <TextBlock Text="Cidade"></TextBlock>
         <TextBox Name="tbCidade"></TextBox>
@@ -35,7 +37,7 @@
         <TextBlock Text="Senha"></TextBlock>
         <PasswordBox Name="pbSenha"></PasswordBox>
 
-        <Button Name="btCadastrarPerfil" Click="btCadastrarPerfil_Click">Cadastrar</Button>
+        <Button Name="btCadastrarPerfil" Click="btCadastrarPerfil_Click" VerticalAlignment="Bottom">Cadastrar</Button>
 
     </StackPanel>
 

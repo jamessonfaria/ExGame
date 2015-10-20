@@ -51,10 +51,10 @@ namespace ExGame
             settings[CHAVE_ID] = perfil.Id;
             settings[CHAVE_NOME] = perfil.Nome;
             settings[CHAVE_EMAIL] = perfil.Email;
-            settings[CHAVE_DATA] = perfil.DataNascimento != null ? perfil.DataNascimento : DateTime.Now;
+            //settings[CHAVE_DATA] = perfil.DataNascimento;
             settings[CHAVE_SENHA] = perfil.Senha;
-            //settings[CHAVE_CIDADE] = perfil.Cidade;
-            //settings[CHAVE_ESTADO] = perfil.Estado;
+            settings[CHAVE_CIDADE] = perfil.Cidade;
+            settings[CHAVE_ESTADO] = perfil.Estado;
             settings.Save();
         }
 
@@ -67,15 +67,15 @@ namespace ExGame
             perfil.Id = settings[CHAVE_ID].ToString();
             perfil.Nome = settings[CHAVE_NOME].ToString();
             perfil.Email = settings[CHAVE_EMAIL].ToString();
-            perfil.DataNascimento = (DateTime)settings[CHAVE_DATA];
-            //perfil.Cidade = settings[CHAVE_CIDADE].ToString();
-            //perfil.Estado = settings[CHAVE_ESTADO].ToString();
+            //perfil.DataNascimento = settings[CHAVE_DATA].ToString();
+            perfil.Cidade = settings[CHAVE_CIDADE].ToString();
+            perfil.Estado = settings[CHAVE_ESTADO].ToString();
             perfil.Senha = settings[CHAVE_SENHA].ToString();
 
             return perfil;
         }
 
-        public static void SalvarPerfilServidor(Perfil perfil)
+        public static void SalvarPerfilServidor(Perfil perfil, UploadStringCompletedEventHandler callback)
         {
             string metodo = perfil.Id == "" ? "POST" : "PUT";
             string url = perfil.Id == "" ? HttpHelper.URL_PERFILS :HttpHelper.URL_PERFILS + "/" + perfil.Id;
@@ -83,19 +83,8 @@ namespace ExGame
 
             WebClient client = new WebClient();
             client.Headers["Content-Type"] = "application/json";
-            client.UploadStringCompleted += Client_UploadStringCompleted;
+            client.UploadStringCompleted += callback;
             client.UploadStringAsync(new Uri(url, UriKind.Absolute), metodo, json);
-
-        }
-
-        private static void Client_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
-        {
-            //o put está retornando vazio no momento
-            if (e.Result != null && e.Result != "")
-            {
-                Perfil perfil = HttpHelper.deserializar<Perfil>(e.Result.ToString());
-                PerfilHelper.SalvarPerfilPhoneSettings(perfil);
-            }
 
         }
     }
