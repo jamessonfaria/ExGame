@@ -24,7 +24,47 @@ namespace ExGame
         {
             progress = new ProgressIndicator();
             InitializeComponent();
+            ModificaTile();
+            CriaTileSec();
             BaixarJogos();
+            
+        }
+
+        protected void ModificaTile()
+        {
+            // acessando o tile principal
+            ShellTile tilePrincipal = ShellTile.ActiveTiles.First();
+
+            // criando um tile data e passando os dados
+            StandardTileData data = new StandardTileData();
+            data.Count = ExisteJogos();
+            data.Title = "Troca de Jogos";
+
+            // atualiza o tile principal
+            tilePrincipal.Update(data);
+        }
+
+        protected void CriaTileSec()
+        {
+            // verifica se o tile ja existe
+            ShellTile tileFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("Acessar Perfil"));
+
+            // se existe o tile
+            if (tileFind != null)
+            {
+                // deleta
+                tileFind.Delete();
+            }
+
+            // criando o tile data
+            StandardTileData data = new StandardTileData();
+            data.Title = "Acessar Perfil";
+
+            // definindo a url para aonde o tile ira quando clicar
+            Uri uri = new Uri("/PerfilPage.xaml", UriKind.Relative);
+
+            // cria o tile
+            ShellTile.Create(uri, data);       
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
