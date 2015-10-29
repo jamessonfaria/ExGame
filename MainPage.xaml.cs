@@ -24,35 +24,11 @@ namespace ExGame
         {           
             progress = new ProgressIndicator();
             InitializeComponent();
-            ModificaTile();            
+            ModificaTile();
             BaixarJogos();
-            
+                        
         }
 
-        protected void CriaTile()
-        {
-
-            // cria o tile secundario
-            // verifica se o tile ja existe
-            ShellTile tileFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("Acessar Perfil"));
-
-            // se existe o tile
-            if (tileFind != null)
-            {
-                // deleta
-                tileFind.Delete();
-            }
-
-            // criando o tile data
-            StandardTileData data = new StandardTileData();
-            data.Title = "Acessar Perfil";
-
-            // definindo a url para aonde o tile ira quando clicar
-            Uri uri = new Uri("/PerfilPage.xaml", UriKind.Relative);
-
-            // cria o tile
-            ShellTile.Create(uri, data);   
-        }
 
         protected void ModificaTile()
         {
@@ -83,8 +59,36 @@ namespace ExGame
 
         private void ApplicationBarIconButton_Perfil_Click(object sender, EventArgs e)
         {
+            CriaTile();
             Uri destino = new Uri("/PerfilPage.xaml", UriKind.Relative);
             NavigationService.Navigate(destino);
+        }
+
+        protected void CriaTile()
+        {
+
+            // cria o tile secundario
+            // verifica se o tile ja existe
+            ShellTile tileFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("ID=2"));
+
+            // se existe o tile
+            if (tileFind == null)
+            {
+
+                // criando o tile data
+                StandardTileData data = new StandardTileData();
+                data.Title = "Acessar Perfil";
+
+                // definindo a url para aonde o tile ira quando clicar
+                Uri uri = new Uri("/PerfilPage.xaml?ID=2", UriKind.Relative);
+
+                // cria o tile
+                ShellTile.Create(uri, data);
+
+                // deleta
+                //                tileFind.Delete();
+            }
+
         }
 
         private void ApplicationBarIconButton_Jogos_Click(object sender, EventArgs e)
